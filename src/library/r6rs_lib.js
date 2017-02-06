@@ -3407,4 +3407,11 @@ if( typeof(BiwaScheme)!='object' ) BiwaScheme={}; with(BiwaScheme) {
     assert_procedure(ar[0]);
     return BiwaScheme.Promise.fresh(ar[0]);
   });
+
+  // TEMP
+  // (expand '(swap! x y))
+  BiwaScheme.define_libfunc("expand", 1, 1, function(ar){
+    return BiwaScheme.Syntax.SyntaxObject.strip(BiwaScheme.Expander.expand(ar[0]));
+  });
+
 }

@@ -22,8 +22,11 @@
   </form>
   <div id='dumparea'></div>
 
-  <pre id="code">;; write your code here
-(print 'hello)</pre>
+  <pre id="code">
+; (orr a b) は (let ((t a)) (if t t b)) に展開されるマクロ
+; 単純に展開してしまうと外側で定義したtと変数名が衝突する
+(print (expand '(let ((t #t)) (orr #f t))))
+  </pre>
 
   <div id='bs-console'></div>
 
@@ -35,7 +38,7 @@
     var code = $("#code").html();
 
     (new BiwaScheme.Interpreter(function(e){
-      puts(e.message);
+      Console.puts(e.message);
       console.error(e);
       throw e;
     })).evaluate(code);
